@@ -37,7 +37,7 @@ This project has two subprojects that reproduce the issue.
   ./gradlew :demo-mimic-intellij:run
   ```
 
-   See [`DumbMain`](blob/master/demo-mimic-intellij/src/main/java/io/github/bric3/dd/tracerWithIntelliJ/DumbMain.java),
+   See [`DumbMain`](demo-mimic-intellij/src/main/java/io/github/bric3/dd/tracerWithIntelliJ/DumbMain.java),
    [IntelliJ's classloader `UrlClassLoader`](https://github.com/JetBrains/intellij-community/blob/ea502d196f4f2118e08de1fafc2295f1158f48ed/platform/util-class-loader/src/com/intellij/util/lang/UrlClassLoader.java#L284).
 
 
@@ -47,8 +47,8 @@ This project has two subprojects that reproduce the issue.
   ./gradlew :demo-basic:run
   ```                    
 
-  See [`DumbMain`](blob/master/demo-basic/src/main/java/io/github/bric3/dd/tracerWithNoCodeSourceClassLoader/DumbMain.java),
-  [`NoProtectionDomainClassLoader`](blob/master/demo-basic/src/main/java/io/github/bric3/dd/tracerWithNoCodeSourceClassLoader/NoProtectionDomainClassLoader.java).
+  See [`DumbMain`](demo-basic/src/main/java/io/github/bric3/dd/tracerWithNoCodeSourceClassLoader/DumbMain.java),
+  [`NoProtectionDomainClassLoader`](demo-basic/src/main/java/io/github/bric3/dd/tracerWithNoCodeSourceClassLoader/NoProtectionDomainClassLoader.java).
 
 In both of these projects one can see
 ```text
