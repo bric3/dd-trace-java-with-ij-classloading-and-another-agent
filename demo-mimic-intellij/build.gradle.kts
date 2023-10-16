@@ -1,6 +1,7 @@
 
 plugins {
-    id("java")
+    java
+    application
 }
 
 group = "io.github.bric3.dd"
@@ -30,10 +31,13 @@ dependencies {
     ))
 }
 
-tasks.register<JavaExec>("run") {
+application {
+    mainClass = "io.github.bric3.dd.tracerWithIntelliJ.DumbMain"
+}
+
+val run by tasks.getting(JavaExec::class) {
     inputs.files(ddAgent)
     inputs.files(dumbAgent)
-    mainClass.set("io.github.bric3.dd.pluginTracer.DumbMain")
     classpath(sourceSets["main"].runtimeClasspath)
     jvmArgs(
         "-Djava.system.class.loader=com.intellij.util.lang.PathClassLoader",

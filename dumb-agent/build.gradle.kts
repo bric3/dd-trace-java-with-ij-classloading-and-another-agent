@@ -6,7 +6,7 @@ tasks {
     jar {
         manifest {
             attributes(
-                "Premain-Class" to "io.github.bric3.dd.DumbAgent",
+                "Premain-Class" to "io.github.bric3.dd.anotherAgent.DumbAgent",
                 // "Can-Redefine-Classes" to true,
                 // "Can-Retransform-Classes" to true,
             )

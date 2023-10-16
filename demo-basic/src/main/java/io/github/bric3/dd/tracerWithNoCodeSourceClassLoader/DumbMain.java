@@ -1,30 +1,19 @@
-package io.github.bric3.dd.pluginTracer;
+package io.github.bric3.dd.tracerWithNoCodeSourceClassLoader;
 
-import com.intellij.util.lang.PathClassLoader;
-import com.intellij.util.lang.UrlClassLoader;
-
-import java.lang.reflect.InvocationTargetException;
-import java.nio.file.Path;
 import java.util.Arrays;
-import java.util.List;
 
 public class DumbMain {
-    public static void main(String[] args) throws ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+    public static void main(String[] args) {
+        System.out.println("---- Args --------------------------------------------------------");
         ProcessHandle.current().info().arguments().stream().flatMap(Arrays::stream).forEach(System.out::println);
+        System.out.println("------------------------------------------------------------------");
 
-        // try reproduce IntelliJ's 
-        // com.intellij.idea.BootstrapClassLoaderUtil#initClassLoader
         ClassLoader classLoader = DumbMain.class.getClassLoader();
-        if (!(classLoader instanceof PathClassLoader)) {
-            throw new RuntimeException("You must run JVM with -Djava.system.class.loader=com.intellij.util.lang.PathClassLoader");
+        if (!(classLoader instanceof NoProtectionDomainClassLoader)) {
+            throw new RuntimeException("You must run JVM with -Djava.system.class.loader=io.github.bric3.dd.tracerWithNoCodeSourceClassLoader.NoProtectionDomainClassLoader");
         }
 
-        UrlClassLoader urlClassLoader = UrlClassLoader.build()
-                .files(List.of(Path.of("build/classes/java/plugin")))
-                .get();
-
-        Class<?> ddPlugin = urlClassLoader.loadClass("DDPlugin");
-        ddPlugin.getDeclaredMethod("load").invoke(ddPlugin.getDeclaredConstructor().newInstance());
+        System.out.println("Hello form app!");
     }
 }
 

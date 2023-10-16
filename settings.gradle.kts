@@ -1,7 +1,8 @@
 rootProject.name = "pluginTracer"
 
 include(
-    "demo",
+    "demo-basic",
+    "demo-mimic-intellij",
     "dumb-agent",
 )
 
