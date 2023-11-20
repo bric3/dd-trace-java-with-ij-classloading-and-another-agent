@@ -4,5 +4,6 @@ include(
     "demo-basic",
     "demo-mimic-intellij",
     "dumb-agent",
+    "demo-all",
 )
 
