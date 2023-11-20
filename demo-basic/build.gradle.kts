@@ -10,15 +10,10 @@ repositories {
     mavenCentral()
 }
 
-
 val ddAgent by configurations.creating
 val dumbAgent by configurations.creating {
     isCanBeResolved = true
     isCanBeConsumed = false
-}
-
-sourceSets.create("plugin") {
-    java
 }
 
 dependencies {
@@ -43,8 +38,4 @@ val run by tasks.getting(JavaExec::class) {
         "-javaagent:${dumbAgent.asPath}",
         "-javaagent:${ddAgent.asPath}",
     )
-}
-
-tasks.compileJava {
-    dependsOn(tasks.named("compilePluginJava"))
 }
